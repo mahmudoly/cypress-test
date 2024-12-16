@@ -1,7 +1,19 @@
 {
-    "compilerOptions": {
-      "types": ["cypress"]
-    },
-    "include": ["**/*.js"]
-  }
-  
+  "compilerOptions": {
+    "checkJs": false, // Disable type checking for JavaScript files
+    "types": ["cypress"], // Include Cypress types for better IntelliSense
+    "baseUrl": ".", // Set the base URL for resolving modules
+    "paths": {
+      "@pages/*": ["cypress/pages/*"], // Alias for Page Object files
+      "@tests/*": ["cypress/e2e/*"], // Alias for test files
+      "@utils/*": ["cypress/support/utils/*"] // Alias for utilities
+    }
+  },
+  "include": [
+    "cypress/**/*.js", // Include all Cypress-related JS files
+    "**/*.js" // Include any additional JS files in the project
+  ],
+  "exclude": [
+    "node_modules" // Exclude dependencies
+  ]
+}
