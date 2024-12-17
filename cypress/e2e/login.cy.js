@@ -3,11 +3,33 @@ import LoginPage from '../pages/LoginPage';
 describe('Login Tests', () => {
   const loginPage = new LoginPage();
 
-  it('Should log in with valid credentials', () => {
-    cy.visit('/login'); // Navigate to the login page
-    loginPage.login('instructor@wedevs.com', 'qwertyui'); // Use the POM method to log in
+  beforeEach(() => {
+    loginPage.navigateTo('/login'); // Use BasePage's navigateTo method
+    loginPage.verifyUrlContains('/login'); // Verify URL contains '/login'
+
+    // Load fixture data before each test and make it available in the test scope
+    cy.fixture('login').as('loginData');
+  });
+
+  it('Should log in with valid credentials', function () {
+    // Access data from the fixture
+    const { emailaddress, password } = this.loginData.validUser;
+
+    // Use POM method with fixture data
+    loginPage.login(emailaddress, password);
 
     // Add assertions
-    cy.url().should('include', '/dashboard');
+    loginPage.verifyLoginSuccess();
+  });
+
+  it('should display error with invalid credentials', function () {
+    // Access data from the fixture
+    const { emailaddress, password } = this.loginData.invalidUser;
+
+    // Use POM method with fixture data
+    loginPage.login(emailaddress, password);
+
+    // Add assertions
+    loginPage.verifyLoginFailure();
   });
 });

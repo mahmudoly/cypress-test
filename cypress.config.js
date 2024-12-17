@@ -3,6 +3,8 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   e2e: {
     baseUrl: "https://app.klasio.dev", // Set the base URL
+    "viewportWidth": 1280,
+    "viewportHeight": 720,
     specPattern: "cypress/e2e/**/*.cy.{js,jsx}", // Test files pattern
     setupNodeEvents(on, config) {
       // @ts-ignore

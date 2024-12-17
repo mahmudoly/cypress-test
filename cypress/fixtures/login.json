@@ -1,0 +1,11 @@
+{
+    "validUser": {
+      "emailaddress": "instructor@wedevs.com",
+      "password": "qwertyui"
+    },
+    "invalidUser": {
+      "emailaddress": "wronguser@email.com",
+      "password": "wrongpassword"
+    }
+  }
+  
